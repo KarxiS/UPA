@@ -58,3 +58,12 @@ Věnujte prosím pozornost parametrům vytvářené datové sady níže (minimá
   - Vyvíjejte a testujte na malém množství stránek nebo lokálně uložených kopiích HTML dokumentů.
   - Finální datovou sadu (150 produktů) není nutné získat naráz. Můžete spuštění rozdělit a spouštět s časovým odstupem.
 
+reviews (pc. reviews, previazane na dalsie reviews - review objekt)
+nazov
+cena
+zlava
+original cena
+material
+wishlist
+description
+brand...
