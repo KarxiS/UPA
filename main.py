@@ -17,7 +17,7 @@ def print_hi(name):
 # -----------------MAIN
 # Press the green button in the gutter to run the script.
 
-URL = "https://www.rolecosplay.com/catalog/category/view/id/59"
+URL = "https://www.rolecosplay.com/anime-costume.html"
 
-analyzator = websiteBrowser(URL);
+analyzator = websiteBrowser(URL)
 # See PyCharm help at https://www.jetbrains.com/help/pycharm/
