@@ -6,7 +6,6 @@ from bs4 import BeautifulSoup
 
 class websiteBrowser:
 
-
     # poslem, tu spracujem cez BS
     def __init__(self, URL):
         self.URL = URL
@@ -28,6 +27,20 @@ class websiteBrowser:
             'Connection': 'keep-alive',
         }
 
+    def updateUrl(self, newUrl):
+        self.URL = newUrl
+
+    def getHtmlContent(self):
+        url = f'{self.URL}'
+        response = requests.get(url, headers=self.headers)
+
+        if response.status_code == 200:
+            self.html_content = response.text
+        else:
+            self.html_content = ''
+
+        return self.html_content
+
     # nacteni linku v konkretnim html_content (na konkretni strance)
     def ziskajAdresyProduktov(self):
         odkazy = []
@@ -46,7 +59,7 @@ class websiteBrowser:
 
         return odkazy
 
-        # ulozi prvnich 150 adres do souboru urls.txt
+    # ulozi prvnich 150 adres do souboru urls.txt    
     def prvnich150Adres(self):
         odkazy = []
         stranka = 1 # cislo aktualni stranky

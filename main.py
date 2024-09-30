@@ -1,24 +1,26 @@
-# This is a sample Python script.
-
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
-# -------------------IMPORTY
+# IMPORTY
 import requests
-
 from webscraping.websiteBrowser import websiteBrowser
+from webscraping.parser import parser
 
-
-# ------------------DEFINICIE
-
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
-
-# -----------------MAIN
-# Press the green button in the gutter to run the script.
-
+# DEFINICIE
 URL = "https://www.rolecosplay.com/anime-costume.html"
 
+# MAIN
+
 analyzator = websiteBrowser(URL)
-analyzator.prvnich150Adres()
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+# analyzator.prvnich150Adres()
+
+extractor = parser()
+# for each url in urls.txt extract the data into product objects
+urlFile = open('urls.txt', 'r')
+x = 0
+for line in urlFile:
+    x += 1
+    analyzator.updateUrl(line.strip())
+    extractor.parse(analyzator.getHtmlContent())
+    print('object ' + str(x) + ' / 150')
+    # break
+urlFile.close()
+
+extractor.save()
