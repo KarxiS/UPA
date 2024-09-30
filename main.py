@@ -20,4 +20,5 @@ def print_hi(name):
 URL = "https://www.rolecosplay.com/anime-costume.html"
 
 analyzator = websiteBrowser(URL)
+analyzator.prvnich150Adres()
 # See PyCharm help at https://www.jetbrains.com/help/pycharm/

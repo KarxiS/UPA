@@ -9,8 +9,8 @@ class websiteBrowser:
 
     # poslem, tu spracujem cez BS
     def __init__(self, URL):
-        self.adresy = []
         self.URL = URL
+        self.html_content = ''
 
         #headre, lebo 403 forbidden
         self.headers = {
@@ -28,51 +28,55 @@ class websiteBrowser:
             'Connection': 'keep-alive',
         }
 
-        response = requests.get(URL, headers=self.headers)
+    # nacteni linku v konkretnim html_content (na konkretni strance)
+    def ziskajAdresyProduktov(self):
+        odkazy = []
 
+        soup = BeautifulSoup(self.html_content, 'html.parser')
 
-        if response.status_code == 200:
-            self.html_content = response.text
-            soup = BeautifulSoup(self.html_content, 'html.parser')
+        # najiti vsech odkazu
+        link_classes = soup.find_all('a', class_='product-item-link')
 
-            print(self.html_content)
-            print(soup.contents)
-        else:
-            print(f"err:{response.status_code}")
-            self.html_content = ''
+        # nacteni hrefu
+        for link in link_classes:
+            href = link.get('href')
+            if href:
+                print(href)
+                odkazy.append(href)
 
+        return odkazy
 
-    def ziskajAdresyProduktov(self, html):
-        URL = self.URL
-        self.adresy = []
-        #------------- DOLE zo stareho projektu TODO
-        #
-        # #self.driver.get(URL+"/plany.php?f=5&t=Z&m=2&r=1&z=MN&c=4")
-        #
-        # # beautifulsoup
-        # soup = BeautifulSoup(html, 'html.parser')
-        #
-        # # hladam table element s id id-tabulka..
-        # table = soup.find('table', attrs={'id': 'id-tabulka-studijnych-planov'})
-        #
-        # # pozeram sa po tr elementoch
-        # rows = table.find_all('tr')
-        # # prehladavam hlavnu stranku so stidujnimy a robim objekty , ktore sa samy spracujku
-        # # Iterate over the rows
-        # for row in rows:
-        #     # hladam podla class
-        #
-        #     if (row.has_attr('class')) and ((row['class'][0] == 'odd') or (row['class'][0] == 'evn')):
-        #         cells = row.find_all('td')
-        #
-        #         # zoberiem link, ktory je v href tagu
-        #         course = cells[0].text
-        #         link = cells[0].find('a')['href']
-        #         self.adresy.append(URL + "/" + link)
-        #
-        #
+        # ulozi prvnich 150 adres do souboru urls.txt
+    def prvnich150Adres(self):
+        odkazy = []
+        stranka = 1 # cislo aktualni stranky
 
-        return self.adresy
+        while len(odkazy) < 150:
+            url = f'{self.URL}?p={stranka}'
+            response = requests.get(url, headers=self.headers)
+
+            if response.status_code == 200:
+
+                # ziskani odkazu z konkretni stranky
+                self.html_content = response.text
+                nove_odkazy = self.ziskajAdresyProduktov()
+                odkazy.extend(nove_odkazy)
+
+                # toto je optional, jen orizne pocet odkazu presne na 150
+                if len(odkazy) >= 150:
+                    odkazy = odkazy[:150]
+                    break
+
+                stranka += 1
+
+            else:
+                print(f"err:{response.status_code}")
+                break
+
+        # zapis do souboru
+        with open('urls.txt', 'w') as f:
+            for odkaz in odkazy:
+                f.write(odkaz + '\n')
 
     def nacitajObsahAdresies(self):
 
