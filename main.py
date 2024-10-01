@@ -18,9 +18,10 @@ x = 0
 for line in urlFile:
     x += 1
     analyzator.updateUrl(line.strip())
-    extractor.parse(analyzator.getHtmlContent())
+    extractor.parse(line.strip(), analyzator.getHtmlContent())
     print('object ' + str(x) + ' / 150')
-    # break
+    if x > 2:
+        break
 urlFile.close()
 
 extractor.save()
