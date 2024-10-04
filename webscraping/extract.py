@@ -1,9 +1,12 @@
-from webscraping.productObj import product
+# script to extract data about products
 from bs4 import BeautifulSoup
+from webscraping.websiteBrowser import websiteBrowser
+from webscraping.productObj import product
 
-class parser:
+class productExtractor:
     # open the url file when instantiating parser
-    def __init__(self):
+    def __init__(self, URL):
+        self.browser = websiteBrowser(URL)
         self.productList = []
 
     # break the html document into product objects
@@ -100,30 +103,27 @@ class parser:
         # add product object to the list 
         self.productList.append(newProduct)
 
-    # save the created objects
-    def save(self):
-        outputFile = "data.tsv"
-        with open(outputFile, 'w', encoding='utf-8') as file:
-            for product in self.productList:
-                file.write(product.getUrl())
-                file.write('\t')
-                file.write(product.getName())
-                file.write('\t')
-                file.write(product.getPrice())
-                file.write('\t')
-                file.write(product.getBrand())
-                file.write('\t')
-                file.write(product.getSource())
-                file.write('\t')
-                file.write(product.getCharacter())
-                file.write('\t')
-                file.write(product.getIncluded())
-                file.write('\t')
-                file.write(product.getMaterial())
-                file.write('\t')
-                file.write(product.getReviews())
-                file.write('\n')
-        
+    # read source file line by line and attempt to extract the data from said url
+    def getProducts(self, sourceFileName):
+        # for each url in urls.txt extract the data into product objects
+        urlFile = open(sourceFileName, 'r')
+        for line in urlFile:
+            self.browser.updateUrl(line.strip())
+            htmlContent = self.browser.getHtmlContent()
+            self.parse(line.strip(), htmlContent)
+        urlFile.close()
+        self.output()
 
-    def getProducts(self):
-        return self.productList
+    # print the created products
+    def output(self):
+        for product in self.productList:
+            print(product.getUrl(), end='\t')
+            print(product.getName(), end='\t')
+            print(product.getPrice(), end='\t')
+            print(product.getBrand(), end='\t')
+            print(product.getSource(), end='\t')
+            print(product.getCharacter(), end='\t')
+            print(product.getIncluded(), end='\t')
+            print(product.getMaterial(), end='\t')
+            print(product.getReviews())
+    

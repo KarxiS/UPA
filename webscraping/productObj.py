@@ -28,6 +28,3 @@ class product:
     def getReviews(self):
         return self.reviews
     
-    def getDiscount(self):
-        discount = (100-(100*self.price/self.originalPrice))
-        return discount if discount >0 else 0

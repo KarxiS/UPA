@@ -1,25 +1,45 @@
-# IMPORTY
+# imports
 import requests
-from webscraping.websiteBrowser import websiteBrowser
-from webscraping.parser import parser
+import argparse
+from webscraping.get import urlObtainer
+from webscraping.extract import productExtractor
 
-# DEFINICIE
+
+# definitions 
 URL = "https://www.rolecosplay.com/anime-costume.html"
 
-# MAIN
+# load operation argument
+argParser = argparse.ArgumentParser(description="Process some integers.")
+argParser.add_argument('--operation', type=str, help="operation of the webscraper")
+argParser.add_argument('--count', type=int, help="quantity of operations performed")
+argParser.add_argument('--source', type=str, help="file containing urls which are to be extracted data from")
+arguments = argParser.parse_args()
 
-analyzator = websiteBrowser(URL)
-# analyzator.prvnich150Adres()
+# check for valid operation
+if arguments.operation != 'get' and arguments.operation != 'extract':
+    print('Invalid operation. Expected either \'get\' or \'extract\'')
+    exit(1)
 
-extractor = parser()
-# for each url in urls.txt extract the data into product objects
-urlFile = open('urls.txt', 'r')
-x = 0
-for line in urlFile:
-    x += 1
-    analyzator.updateUrl(line.strip())
-    extractor.parse(line.strip(), analyzator.getHtmlContent())
-    print('object ' + str(x) + ' / 150')
-urlFile.close()
+if arguments.operation == 'get':
+    operations = arguments.count
 
-extractor.save()
+    if operations == None:
+        print('Please provide a number of operations you wish to perform')
+        exit(1)
+
+    if operations <= 0:
+        print('Invalid operation count. Expected a greater than 0')
+        exit(1)
+
+if arguments.source == None and arguments.operation == 'extract':
+    print('Invalid source file')
+    exit(1)
+
+# decide which script to run based on the operation
+if arguments.operation == 'get':
+    obtainer = urlObtainer(URL)
+    obtainer.getUrls(operations)
+elif arguments.operation == 'extract':
+    extractor = productExtractor(URL)
+    extractor.getProducts('urls.txt')
+exit(0)

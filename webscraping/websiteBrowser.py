@@ -1,8 +1,4 @@
-import json
-import os
-
 import requests
-from bs4 import BeautifulSoup
 
 class websiteBrowser:
 
@@ -40,63 +36,4 @@ class websiteBrowser:
             self.html_content = ''
 
         return self.html_content
-
-    # nacteni linku v konkretnim html_content (na konkretni strance)
-    def ziskajAdresyProduktov(self):
-        odkazy = []
-
-        soup = BeautifulSoup(self.html_content, 'html.parser')
-
-        # najiti vsech odkazu
-        link_classes = soup.find_all('a', class_='product-item-link')
-
-        # nacteni hrefu
-        for link in link_classes:
-            href = link.get('href')
-            if href:
-                print(href)
-                odkazy.append(href)
-
-        return odkazy
-
-    # ulozi prvnich 150 adres do souboru urls.txt    
-    def prvnich150Adres(self):
-        odkazy = []
-        stranka = 1 # cislo aktualni stranky
-
-        while len(odkazy) < 150:
-            url = f'{self.URL}?p={stranka}'
-            response = requests.get(url, headers=self.headers)
-
-            if response.status_code == 200:
-
-                # ziskani odkazu z konkretni stranky
-                self.html_content = response.text
-                nove_odkazy = self.ziskajAdresyProduktov()
-                odkazy.extend(nove_odkazy)
-
-                # toto je optional, jen orizne pocet odkazu presne na 150
-                if len(odkazy) >= 150:
-                    odkazy = odkazy[:150]
-                    break
-
-                stranka += 1
-
-            else:
-                print(f"err:{response.status_code}")
-                break
-
-        # zapis do souboru
-        with open('urls.txt', 'w') as f:
-            for odkaz in odkazy:
-                f.write(odkaz + '\n')
-
-    def nacitajObsahAdresies(self):
-
-        localObsahAdries = []
-        #for adresa in self.adresy:
-            #self.driver.get(adresa)
-            #localObsahAdries.append(self.driver.page_source)
-
-
-        return localObsahAdries
+        
