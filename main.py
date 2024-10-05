@@ -41,5 +41,5 @@ if arguments.operation == 'get':
     obtainer.getUrls(operations)
 elif arguments.operation == 'extract':
     extractor = productExtractor(URL)
-    extractor.getProducts('urls.txt')
+    extractor.getProducts(arguments.source)
 exit(0)

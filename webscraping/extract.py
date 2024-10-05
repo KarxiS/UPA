@@ -105,11 +105,9 @@ class productExtractor:
 
     # read source file line by line and attempt to extract the data from said url
     def getProducts(self, sourceFileName):
-        # for each url in urls.txt extract the data into product objects
-        urlFile = open(sourceFileName, 'r', encoding='utf-16')
-
+        # for each url in source file extract the data into product objects
+        urlFile = open(sourceFileName, 'r')
         for line in urlFile:
-            print("processing...")
             self.browser.updateUrl(line.strip())
             htmlContent = self.browser.getHtmlContent()
             self.parse(line.strip(), htmlContent)
