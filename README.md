@@ -25,7 +25,7 @@ Věnujte prosím pozornost parametrům vytvářené datové sady níže (minimá
 3. **Formát výstupu**:
    [OK] - Výstup bude ve formátu TSV:
    [OK]  - Každý řádek bude obsahovat: URL produktu, název produktu, aktuální cenu a hodnoty jednotlivých parametrů, tedy minimálně 8 sloupců.
-   [WIP]  - Nevypisujte názvy sloupců (záhlaví) – jejich význam zdokumentujte v README.
+   [OK]  - Nevypisujte názvy sloupců (záhlaví) – jejich význam zdokumentujte v README.
    [OK]  - Hodnoty ukládejte jako řetězce ve formátu uvedeném na stránkách (bez normalizace jednotek).
 
 4. **Technické požadavky**:
@@ -40,7 +40,7 @@ Věnujte prosím pozornost parametrům vytvářené datové sady níže (minimá
 
 #### Způsob odevzdání (požadované výstupy):
 [WIP] - **Výsledné řešení** odevzdá pouze vedoucí týmu prostřednictvím IS VUT jako jeden ZIP archiv, který bude obsahovat:
-[CHECK]  1. `urls.txt`: Ukázkový výstup obsahující seznam URL (minimálně 150 řádků).
+[OK]  1. `urls.txt`: Ukázkový výstup obsahující seznam URL (minimálně 150 řádků).
 [CHECK]  2. `data.tsv`: Ukázkový výstup s informacemi o produktech ve formátu TSV, s minimálně 150 řádky.
 [CHECK]  3. `get.py` & `extract.py` Implementaci obou skriptů (pro získání URL a pro extrakci dat o produktech).
 [CHECK]  4. `build.sh`: Skript, který zajistí případný překlad, instalaci závislostí nebo další kroky nutné ke spuštění programu. Pokud není speciální příprava nutná, bude tento skript prázdný.
