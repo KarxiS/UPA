@@ -1,3 +1,7 @@
+# Name          : productObj.py
+# Project       : UPA 1. část: extrakce dat z webu
+# Description   : Class of a single product
+# Authors       : xbilko03, xpauli08, xsugark00
 class product:
     def __init__(self, url, name, price, brand, source, character, included, material, reviews):
         self.url = url

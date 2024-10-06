@@ -29,7 +29,7 @@ Věnujte prosím pozornost parametrům vytvářené datové sady níže (minimá
    [OK]  - Hodnoty ukládejte jako řetězce ve formátu uvedeném na stránkách (bez normalizace jednotek).
 
 4. **Technické požadavky**:
-   [CHECK] - Řešení musí být spustitelné na serveru merlin. Pokud je server příliš omezující, domluvte si individuální výjimku do 6.10.
+   [OK] - Řešení musí být spustitelné na serveru merlin. Pokud je server příliš omezující, domluvte si individuální výjimku do 6.10.
    [OK] - Skripty budou vypisovat výsledky na standardní výstup (stdout). Uložení výsledků do souborů se provádí přesměrováním při spuštění z příkazové řádky.
    [OK] - Můžete využít libovolnou implementační platformu (Python, JavaScript, Java, bash apod.), ale program musí běžet lokálně a nesmí využívat online služby třetích stran.
    [OK] - Využití volně dostupných knihoven (puppeteer, BeautifulSoup apod.) je povoleno.
@@ -41,17 +41,17 @@ Věnujte prosím pozornost parametrům vytvářené datové sady níže (minimá
 #### Způsob odevzdání (požadované výstupy):
 [WIP] - **Výsledné řešení** odevzdá pouze vedoucí týmu prostřednictvím IS VUT jako jeden ZIP archiv, který bude obsahovat:
 [OK]  1. `urls.txt`: Ukázkový výstup obsahující seznam URL (minimálně 150 řádků).
-[CHECK]  2. `data.tsv`: Ukázkový výstup s informacemi o produktech ve formátu TSV, s minimálně 150 řádky.
-[CHECK]  3. `get.py` & `extract.py` Implementaci obou skriptů (pro získání URL a pro extrakci dat o produktech).
-[CHECK]  4. `build.sh`: Skript, který zajistí případný překlad, instalaci závislostí nebo další kroky nutné ke spuštění programu. Pokud není speciální příprava nutná, bude tento skript prázdný.
-[CHECK]  5. `run.sh`: Testovací skript, který spustí skript pro získání seznamu URL, uloží je do souboru `url_test.txt` a následně pro prvních 10 URL z tohoto seznamu spustí druhý skript, který získá informace o produktech a vypíše je na standardní výstup (stdout).
+[OK]  2. `data.tsv`: Ukázkový výstup s informacemi o produktech ve formátu TSV, s minimálně 150 řádky.
+[OK]  3. `get.py` & `extract.py` Implementaci obou skriptů (pro získání URL a pro extrakci dat o produktech).
+[OK]  4. `build.sh`: Skript, který zajistí případný překlad, instalaci závislostí nebo další kroky nutné ke spuštění programu. Pokud není speciální příprava nutná, bude tento skript prázdný.
+[OK]  5. `run.sh`: Testovací skript, který spustí skript pro získání seznamu URL, uloží je do souboru `url_test.txt` a následně pro prvních 10 URL z tohoto seznamu spustí druhý skript, který získá informace o produktech a vypíše je na standardní výstup (stdout).
 [WIP]  6. `README`: Dokumentace obsahující:
      - Název týmu a seznam řešitelů.
      - URL a název e-shopu, který jste zvolili.
      - Význam sloupců ve výstupu TSV.
      - Případné poznámky, pokud je třeba něco speciálně vysvětlit.
   
-[CHECK] - **Neposílejte** knihovny třetích stran, přeložený kód, adresáře se závislostmi (`node_modules` apod.), ani další soubory, které je možné získat automaticky sestavením projektu.
+[OK] - **Neposílejte** knihovny třetích stran, přeložený kód, adresáře se závislostmi (`node_modules` apod.), ani další soubory, které je možné získat automaticky sestavením projektu.
 
 #### Poznámky:
 - Chovejte se ohleduplně k cizím serverům a nezatěžujte je velkým množstvím dotazů.

@@ -1,13 +1,17 @@
+# Name          : websiteBrowser.py
+# Project       : UPA 1. část: extrakce dat z webu
+# Description   : Script to send requests to the target URL/website
+# Authors       : xbilko03, xpauli08, xsugark00
 import requests
 
 class websiteBrowser:
 
-    # poslem, tu spracujem cez BS
+    # send using BS
     def __init__(self, URL):
         self.URL = URL
         self.html_content = ''
 
-        #headre, lebo 403 forbidden
+        #headers or 403 forbidden
         self.headers = {
             'User-Agent': (
                 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) '

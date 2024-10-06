@@ -1,4 +1,7 @@
-# script to extract data about products
+# Name          : extract.py
+# Project       : UPA 1. část: extrakce dat z webu
+# Description   : Script to extract data about products
+# Authors       : xbilko03, xpauli08, xsugark00
 from bs4 import BeautifulSoup
 from webscraping.websiteBrowser import websiteBrowser
 from webscraping.productObj import product
@@ -42,8 +45,6 @@ class productExtractor:
         for element in attributes.find_all("br"):
             element.replace_with(" ||| ")
         attributesRaw = attributes.find_all('p')
-
-        # replace each element in html with spaces for more consistent parsing
 
         # array of separated attributes (text only)
         attributesText = [element.get_text(separator=" ", strip=True) for element in attributesRaw]
@@ -106,7 +107,7 @@ class productExtractor:
     # read source file line by line and attempt to extract the data from said url
     def getProducts(self, sourceFileName):
         # for each url in source file extract the data into product objects
-        urlFile = open(sourceFileName, 'r')
+        urlFile = open(sourceFileName, 'r', encoding='utf-8')
         for line in urlFile:
             self.browser.updateUrl(line.strip())
             htmlContent = self.browser.getHtmlContent()

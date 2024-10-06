@@ -1,0 +1,18 @@
+Nazev týmu:			Tým xbilko03
+Seznam řešitelů:		xbilko03, xpauli08, xsugark00
+URL e-shopu:			https://www.rolecosplay.com/
+Název e-shopu:			RoleCosplay
+Význam sloupců ve výstupu TSV:
+1. url produktu
+2. meno produktu
+3. cena produktu
+4. kategória značka produktu
+5. kategória anime viazaného k produktu
+6. kategória charakter viazaného k produktu
+7. zoznam vecí, čo produkt ešte obsahuje
+8. materiál produktu
+9. počet recenzií
+Poznámky:
+extract.py - skript pre získanie dát o produkte zo zoznamu URLs
+get.py - skript pre získanie URLs produktov zo zdrojovej webovej stránky
+websiteBrowser.py - skript pre posieľanie requestov na zdrojovú webovú stránku

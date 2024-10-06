@@ -1,4 +1,7 @@
-# script to get urls of different products from the target website
+# Name          : get.py
+# Project       : UPA 1. část: extrakce dat z webu
+# Description   : Script to get urls of different products from the target website
+# Authors       : xbilko03, xpauli08, xsugark00
 from bs4 import BeautifulSoup
 from webscraping.websiteBrowser import websiteBrowser
 
@@ -8,16 +11,16 @@ class urlObtainer:
         self.urls = []
         self.baseUrl = URL
 
-    # nacteni linku v konkretnim html_content (na konkretni strance)
-    def ziskajAdresyProduktov(self, htmlContent):
+    # load a link in specific html_content (from a specific website)
+    def getProductAdresses(self, htmlContent):
         odkazy = []
 
         soup = BeautifulSoup(htmlContent, 'html.parser')
 
-        # najiti vsech odkazu
+        # find all links to products
         link_classes = soup.find_all('a', class_='product-item-link')
 
-        # nacteni hrefu
+        # load href
         for link in link_classes:
             href = link.get('href')
             if href:
@@ -25,20 +28,20 @@ class urlObtainer:
 
         return odkazy
 
-    # ulozi prvnich urlCount adres do souboru urls.txt    
+    # prints the first urlCount adresses to stdout    
     def getUrls(self, urlCount):
-        stranka = 1 # cislo aktualni stranky
+        currentSiteIndex = 1
 
         while len(self.urls) < urlCount:
-            self.browser.updateUrl(f'{self.baseUrl}?p={stranka}')
+            self.browser.updateUrl(f'{self.baseUrl}?p={currentSiteIndex}')
             htmlContent = self.browser.getHtmlContent()
-            newUrls = self.ziskajAdresyProduktov(htmlContent)
+            newUrls = self.getProductAdresses(htmlContent)
 
             for newUrl in newUrls:
                 self.urls.append(newUrl)
                 if len(self.urls) >= urlCount:
                     break
-            stranka += 1
+            currentSiteIndex += 1
         self.output()
     
 

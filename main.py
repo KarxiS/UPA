@@ -1,11 +1,12 @@
-# imports
-import requests
+# Name          : main.py
+# Project       : UPA 1. část: extrakce dat z webu
+# Description   : Main script for the application, handles input arguments and controls which script to run
+# Authors       : xbilko03, xpauli08, xsugark00	
 import argparse
 from webscraping.get import urlObtainer
 from webscraping.extract import productExtractor
 
-
-# definitions 
+# sourceURL
 URL = "https://www.rolecosplay.com/anime-costume.html"
 
 # load operation argument
@@ -42,4 +43,5 @@ if arguments.operation == 'get':
 elif arguments.operation == 'extract':
     extractor = productExtractor(URL)
     extractor.getProducts(arguments.source)
+    
 exit(0)
