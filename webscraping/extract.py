@@ -8,8 +8,8 @@ from webscraping.productObj import product
 
 class productExtractor:
     # open the url file when instantiating parser
-    def __init__(self, URL):
-        self.browser = websiteBrowser(URL)
+    def __init__(self):
+        self.browser = websiteBrowser()
         self.productList = []
 
     # break the html document into product objects
@@ -105,10 +105,14 @@ class productExtractor:
         self.productList.append(newProduct)
 
     # read source file line by line and attempt to extract the data from said url
-    def getProducts(self, sourceFileName):
+    def getProducts(self,maxProducts=0,sourceFileName='url_test.txt'):
         # for each url in source file extract the data into product objects
         urlFile = open(sourceFileName, 'r', encoding='utf-8')
+        counter = 0
         for line in urlFile:
+            counter+=1
+            if(counter>maxProducts):
+                break
             self.browser.updateUrl(line.strip())
             htmlContent = self.browser.getHtmlContent()
             self.parse(line.strip(), htmlContent)

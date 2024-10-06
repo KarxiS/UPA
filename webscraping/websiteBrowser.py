@@ -7,8 +7,8 @@ import requests
 class websiteBrowser:
 
     # send using BS
-    def __init__(self, URL):
-        self.URL = URL
+    def __init__(self, url=''):
+        self.URL = url
         self.html_content = ''
 
         #headers or 403 forbidden

@@ -6,10 +6,10 @@ from bs4 import BeautifulSoup
 from webscraping.websiteBrowser import websiteBrowser
 
 class urlObtainer:
-    def __init__(self, URL):
-        self.browser = websiteBrowser(URL)
+    def __init__(self, url):
+        self.browser = websiteBrowser(url)
         self.urls = []
-        self.baseUrl = URL
+        self.baseUrl = url
 
     # load a link in specific html_content (from a specific website)
     def getProductAdresses(self, htmlContent):
@@ -29,7 +29,7 @@ class urlObtainer:
         return odkazy
 
     # prints the first urlCount adresses to stdout    
-    def getUrls(self, urlCount):
+    def getUrls(self, urlCount=0):
         currentSiteIndex = 1
 
         while len(self.urls) < urlCount:
