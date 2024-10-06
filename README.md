@@ -57,3 +57,9 @@ Věnujte prosím pozornost parametrům vytvářené datové sady níže (minimá
 - Chovejte se ohleduplně k cizím serverům a nezatěžujte je velkým množstvím dotazů.
   - Vyvíjejte a testujte na malém množství stránek nebo lokálně uložených kopiích HTML dokumentů.
   - Finální datovou sadu (150 produktů) není nutné získat naráz. Můžete spuštění rozdělit a spouštět s časovým odstupem.
+
+
+### Merlin connect:
+- Pro pripojeni na merlina lze pouzit prikaz ssh v linux (wsl) terminalu nebo windows (powershell):
+- ssh xlogin00@eva.fit.vutbr.cz poté heslo co je na wis/fit heslo/heslo na počítače v laboratořích a pak jenom ssh merlin 
+- (jistejsi pres evu protoze merlin je vybiravy s prichozimi pripojenimi z venku)
