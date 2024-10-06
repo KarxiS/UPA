@@ -13,7 +13,7 @@ URL = "https://www.rolecosplay.com/anime-costume.html"
 argParser = argparse.ArgumentParser(description="Process some integers.")
 argParser.add_argument('--operation', type=str, help="operation of the webscraper")
 argParser.add_argument('--countGet', type=int, help="quantity of operations performed")
-argParser.add_argument('--countExtract', type=str, help="quantity of operations performed")
+argParser.add_argument('--countExtract', type=int, help="quantity of operations performed")
 argParser.add_argument('--source', type=str, help="file containing urls which are to be extracted data from")
 arguments = argParser.parse_args()
 
